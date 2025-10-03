@@ -31,6 +31,7 @@
             <h4 class="bg-dark text-white py-3">ADMIN LOGIN PANEL</h4>
             <div class="p-4">
                 <div class="mb-3">
+                    <label for="admin_name" class="visually-hidden">Admin Name</label>
                     <input name="admin_name" required type="text" class="form-control shadow-none text-center" placeholder="Admin Name">
                 </div>
                 <div class="mb-4">
