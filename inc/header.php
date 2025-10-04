@@ -213,4 +213,4 @@
 </div>
 <!-- End of Modal đăng ký -->
 <!-- End of Modal đăng nhập --> 
- 
+ <!-- End of Navigation Bar -->
