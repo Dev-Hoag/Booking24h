@@ -1,6 +1,6 @@
 <div class="container-fluid bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
     <h3 class="mb-0 h-font">Booking24h</h3>
-    <a href="logout.php" class="btn btn-light btn-sm">LOG OUT</a>
+    <a href="logout.php" class="btn btn-light btn-sm">Đăng xuất</a>
 </div>
 <div class = "col-lg-2 bg-dark border-top border-3 border-secondary" id="dashboard-menu">
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -16,10 +16,16 @@
                         <a class="nav-link text-white" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Rooms</a>
+                        <a class="nav-link text-white" href="rooms.php">Phòng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Users</a>
+                        <a class="nav-link text-white" href="feature_facilities.php">Tính năng & Tiện nghi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="user_queries.php">Phản hổi khách hàng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="carousel.php">Carousel</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="settings.php">Settings</a>

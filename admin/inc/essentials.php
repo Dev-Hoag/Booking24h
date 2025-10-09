@@ -1,9 +1,18 @@
 <?php
 
-    define('SITE_URL', 'http://localhost:9000/127.0.0.1/booking24h/');
+    define('SITE_URL', 'http://localhost:9000/booking24h/');
     define('ABOUT_IMG_PATH', SITE_URL.'images/about/');
+    define('CAROUSEL_IMG_PATH', SITE_URL.'images/carousel/');
+    define('FACILITIES_IMG_PATH', SITE_URL.'images/facilities/');
+    define('ROOMS_IMG_PATH', SITE_URL.'images/rooms/');
+
+    // Backend upload process data
     define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/Booking24h/images/');
     define('ABOUT_FOLDER', 'about/');
+    define('CAROUSEL_FOLDER', 'carousel/');
+    define('FACILITIES_FOLDER', 'facilities/');
+    define('ROOMS_FOLDER', 'rooms/');
+
     function adminLogin(){
         session_start();
         if(!(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] == true)){
@@ -60,6 +69,29 @@
         }
         else{
             return false;
+        }
+    }
+
+    function uploadSVGImage($image, $folder){
+        $valid_mime = ['image/svg+xml'];
+        $img_mime = $image['type'];
+        if(!in_array($img_mime, $valid_mime)){
+            return 'inv_img';
+        }
+        else if(($image['size']/(1024*1024)) > 1){
+            return 'inv_size';
+        }
+        else{
+            $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $rname = 'IMG_'.random_int(11111, 99999).".$ext";
+            $img_path = UPLOAD_IMAGE_PATH.$folder.$rname;
+
+            if(move_uploaded_file($image['tmp_name'], $img_path)){
+                return $rname;
+            }
+            else{
+                return 'upd_failed';
+            }
         }
     }
 ?>

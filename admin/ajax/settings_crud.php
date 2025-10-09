@@ -77,7 +77,7 @@
                     <img src="$path$row[picture]" class="card-img">
                     <div class="card-img-overlay text-end">
                         <button type="button" onclick="rem_member($row[sr_no])" class="btn btn-danger btn-sm shadow-none">
-                            <i class="bi bi-trash"></i>Delete
+                            <i class="bi bi-trash"></i> Delete
                         </button>
                     </div>
                     <p class="card-text text-center px-3 py-2">$row[name]</p>
