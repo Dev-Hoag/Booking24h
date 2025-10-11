@@ -95,6 +95,7 @@ function get_contacts() {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
     xhr.onload = function () {
+        console.log("Raw response:", this.responseText);
         contacts_data = JSON.parse(this.responseText);
         contacts_data = Object.values(contacts_data);
 
@@ -125,9 +126,15 @@ function upd_contacts() {
     let contacts_inp_id = ['address_inp', 'gmap_inp', 'pn1_inp', 'pn2_inp', 'email_inp', 'fb_inp', 'tw_inp', 'iFrame_inp'];
     let data_str = "";
     for (let i = 0; i < index.length; i++) {
-        data_str += index[i] + "=" + document.getElementById(contacts_inp_id[i]).value;
+        data_str += index[i] + "=" + encodeURIComponent(document.getElementById(contacts_inp_id[i]).value);
+        if (i < index.length - 1) {
+            data_str += "&";
+        }
     }
     data_str += "&upd_contacts";
+    // Debug
+    console.log("Data gửi:", data_str);
+    
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "ajax/settings_crud.php", true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

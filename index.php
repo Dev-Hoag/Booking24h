@@ -32,7 +32,7 @@
             .custom-bg{
             background-color: #2ec1ac;
             }
-            .custom-bg: hover{
+            .custom-bg:hover{
             background-color: #279e8c;
             }
             .availability-form{
@@ -397,35 +397,53 @@
 
   <!-- liên hệ -->
 
+  <?php
+    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+    $values = [1];
+    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+  ?>
+
   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">LIÊN HỆ VỚI CHÚNG TÔI</h2>
 
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-        <iframe class="w-100 rounded" height="320px" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15676.564786603647!2d106.67089100000001!3d10.800496!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752928b7208c15%3A0xc7aa798b94e48f8d!2zS2jDoWNoIHPhuqFuIFTDom4gU8ahbiBOaOG6pXQ!5e0!3m2!1svi!2sus!4v1760025386407!5m2!1svi!2sus" loading="lazy"></iframe>
+        <iframe class="w-100 rounded" height="320px" src="<?php echo $contact_r['iframe'] ?>" loading="lazy"></iframe>
       </div>
       <div class="col-lg-4 col-md-4">
         <div class="bg-white p-4 rounded mb-4">
           <h5>Liên Hệ:</h5>
-          <a href="0968065187" class="d-inline-block mb-2 text-decoration-none text-dark">
-            <i class="bi bi-telephone-fill"></i> 0385611929
+          <a href="+<?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
+            <i class="bi bi-telephone-fill"></i> +<?php echo $contact_r['pn1'] ?>
           </a>
           <br>
-          <a href="0968065187" class="d-inline-block text-decoration-none text-dark">
-            <i class="bi bi-telephone-fill"></i> 0869884725
-          </a>
+          <?php
+            if($contact_r['pn2']!=''){
+              echo<<<data
+                <a href="+$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
+                  <i class="bi bi-telephone-fill"></i> +$contact_r[pn2]
+                </a>
+              data;
+            }
+          ?>
         </div>
         <div class="bg-white p-4 rounded mb-4">
           <h5>Theo Dõi:</h5>
-          <a href="#" class="d-inline-block mb-3">
-            <span class="badge bg-light text-dark fs-6 p-2">
-              <i class="bi bi-facebook me-1"></i>FaceBook
-            </span>
-          </a>
+          <?php
+            if($contact_r['tw']!=''){
+              echo<<<data
+                <a href="$contact_r[tw]" class="d-inline-block mb-3">
+                  <span class="badge bg-light text-dark fs-6 p-2">
+                    <i class="bi bi-twitter me-1"></i>Twitter
+                  </span>
+                </a>
+              data;
+            }
+          ?>
           <br>
-           <a href="#" class="d-inline-block mb-3">
+           <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block mb-3">
             <span class="badge bg-light text-dark fs-6 p-2">
-              <i class="bi bi-twitter me-1"></i>Twitter
+              <i class="bi bi-facebook me-1"></i>Facebook
             </span>
           </a>
         </div>
