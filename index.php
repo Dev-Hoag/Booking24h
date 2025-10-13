@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking 24h</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
-    <?php require('inc/links.php'); ?>
-    <style>
-        *{
-            font-family: 'Poppins', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking 24h</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+  <?php require('inc/links.php'); ?>
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .h-font{
-            font-family: 'Merienda', cursive;
-        }
+    .h-font {
+      font-family: 'Merienda', cursive;
+    }
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button{
-            -webkit-appearance: none;
-            margin: 0;
-        }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
-        input[type = number]{
-            -moz-appearance: textfield;
-        }
-            .availability-form{
-            margin-top: -50px;
-            z-index: 2;
-            position: relative;
-            }
-            .custom-bg{
-            background-color: #2ec1ac;
-            }
-            .custom-bg:hover{
-            background-color: #279e8c;
-            }
-            .availability-form{
-            margin-top: -50px;
-            z-index: 2;
-            position: relative;
-            }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
 
-            @media screen and (max-width: 575px) {
-            .availability-form{
-                margin-top: 25px;
-                padding: 0 35px;
-            }
-            }
+    .availability-form {
+      margin-top: -50px;
+      z-index: 2;
+      position: relative;
+    }
 
-    </style>
+    .custom-bg {
+      background-color: #2ec1ac;
+    }
+
+    .custom-bg:hover {
+      background-color: #279e8c;
+    }
+
+    .availability-form {
+      margin-top: -50px;
+      z-index: 2;
+      position: relative;
+    }
+
+    @media screen and (max-width: 575px) {
+      .availability-form {
+        margin-top: 25px;
+        padding: 0 35px;
+      }
+    }
+  </style>
 </head>
+
 <body class="bg-Light">
 
   <?php require('inc/header.php'); ?>
@@ -59,7 +64,18 @@
   <div class="container-fluid px-lg-4 mt-4">
     <div class="swiper Swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <?php
+          $res = selectAll('carousel');
+          while ($row = mysqli_fetch_assoc($res)) {
+            $path = CAROUSEL_IMG_PATH;
+            echo <<<data
+              <div class="swiper-slide">
+                <img src="$path$row[image]" class="w-100 d-block">
+              </div>
+            data;
+          }
+        ?>
+        <!-- <div class="swiper-slide">
           <img src="images/carousel/IMG_15372.png" class="w-100 d-block">
         </div>
         <div class="swiper-slide">
@@ -76,7 +92,7 @@
         </div>
         <div class="swiper-slide">
           <img src="images/carousel/IMG_81085.png" class="w-100 d-block">
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -85,40 +101,40 @@
 
   <div class="container availability-form">
     <div class="row">
-        <div class="col-lg-12 bg-white shadow p-4 rounded">
-            <h5 class="mb-4">BẮT ĐẦU ĐẶT PHÒNG</h5>
-            <form>
-                <div class="row align-items-end">
-                    <div class="col-lg-3 mb-3">
-                        <label class="form-label" style="font-weight: 500;">Nhận Phòng</label>
-                        <input type="date" class="form-control shadow-none">
-                    </div>
-                    <div class="col-lg-3 mb-3">
-                        <label class="form-label" style="font-weight: 500;">Trả Phòng</label>
-                        <input type="date" class="form-control shadow-none">
-                    </div>
-                    <div class="col-lg-2 mb-3">
-                        <label class="form-label" style="font-weight: 500;">Người Lớn</label>
-                        <select class="form-select shadow-none">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 mb-3">
-                        <label class="form-label" style="font-weight: 500;">Trẻ Em</label>
-                        <select class="form-select shadow-none">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 mb-lg-3 text-end">
-                        <button type="submit" class="btn text-white shadow-none custom-bg">Đặt Phòng</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+      <div class="col-lg-12 bg-white shadow p-4 rounded">
+        <h5 class="mb-4">BẮT ĐẦU ĐẶT PHÒNG</h5>
+        <form>
+          <div class="row align-items-end">
+            <div class="col-lg-3 mb-3">
+              <label class="form-label" style="font-weight: 500;">Nhận Phòng</label>
+              <input type="date" class="form-control shadow-none">
+            </div>
+            <div class="col-lg-3 mb-3">
+              <label class="form-label" style="font-weight: 500;">Trả Phòng</label>
+              <input type="date" class="form-control shadow-none">
+            </div>
+            <div class="col-lg-2 mb-3">
+              <label class="form-label" style="font-weight: 500;">Người Lớn</label>
+              <select class="form-select shadow-none">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="col-lg-2 mb-3">
+              <label class="form-label" style="font-weight: 500;">Trẻ Em</label>
+              <select class="form-select shadow-none">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="col-lg-2 mb-lg-3 text-end">
+              <button type="submit" class="btn text-white shadow-none custom-bg">Đặt Phòng</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -190,7 +206,7 @@
             <div class="features mb-4">
               <h6 class="mb-1">Thông Tin</h6>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Phòng Ngủ 
+                2 Phòng Ngủ
               </span>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
                 1 Phòng Tắm
@@ -243,13 +259,13 @@
             <div class="features mb-4">
               <h6 class="mb-1">Thông Tin Phòng</h6>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
-                3 Phòng Ngủ 
+                3 Phòng Ngủ
               </span>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
                 2 Phòng Tắm
               </span>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
-                2 Ban Công 
+                2 Ban Công
               </span>
               <span class="badge rounded-pill bg-light text-dark text-wrap">
                 3 Ghế Sofa
@@ -383,7 +399,7 @@
             <i class="bi bi-star-fill text-warning"></i>
             <i class="bi bi-star-fill text-warning"></i>
             <i class="bi bi-star-fill text-warning"></i>
-             <i class="bi bi-star-fill text-warning"></i>
+            <i class="bi bi-star-fill text-warning"></i>
           </div>
         </div>
 
@@ -398,9 +414,9 @@
   <!-- liên hệ -->
 
   <?php
-    $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
-    $values = [1];
-    $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
+  $contact_q = "SELECT * FROM `contact_details` WHERE `sr_no`=?";
+  $values = [1];
+  $contact_r = mysqli_fetch_assoc(select($contact_q, $values, 'i'));
   ?>
 
   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">LIÊN HỆ VỚI CHÚNG TÔI</h2>
@@ -418,30 +434,30 @@
           </a>
           <br>
           <?php
-            if($contact_r['pn2']!=''){
-              echo<<<data
+          if ($contact_r['pn2'] != '') {
+            echo <<<data
                 <a href="+$contact_r[pn2]" class="d-inline-block text-decoration-none text-dark">
                   <i class="bi bi-telephone-fill"></i> +$contact_r[pn2]
                 </a>
               data;
-            }
+          }
           ?>
         </div>
         <div class="bg-white p-4 rounded mb-4">
           <h5>Theo Dõi:</h5>
           <?php
-            if($contact_r['tw']!=''){
-              echo<<<data
+          if ($contact_r['tw'] != '') {
+            echo <<<data
                 <a href="$contact_r[tw]" class="d-inline-block mb-3">
                   <span class="badge bg-light text-dark fs-6 p-2">
                     <i class="bi bi-twitter me-1"></i>Twitter
                   </span>
                 </a>
               data;
-            }
+          }
           ?>
           <br>
-           <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block mb-3">
+          <a href="<?php echo $contact_r['fb'] ?>" class="d-inline-block mb-3">
             <span class="badge bg-light text-dark fs-6 p-2">
               <i class="bi bi-facebook me-1"></i>Facebook
             </span>
@@ -462,7 +478,7 @@
       autoplay: {
         delay: 3500,
         disableOnInteraction: false,
-    }
+      }
     });
 
     var swiper = new Swiper(".swiper-testimonials", {
@@ -500,4 +516,5 @@
   </script>
 
 </body>
+
 </html>
